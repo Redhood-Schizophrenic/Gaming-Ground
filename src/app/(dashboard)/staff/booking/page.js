@@ -23,7 +23,6 @@ export default function BookingPage() {
 
 
     useEffect(() => {
-
         fetchStations();
     }, []);
 
@@ -72,7 +71,7 @@ export default function BookingPage() {
                                     <h1 className='text-lg font-semibold'>{station.name}</h1>
                                     <p className={`text-sm rounded-full px-3 py-1.5
                                         ${station.status === 'open' ? 'bg-green-800/60 text-green-500' : (
-                                            station.status === 'booked' ? 'bg-red-800/60 text-red-500' :
+                                            station.status === 'booked' ? 'bg-red-800/30 text-red-500' :
                                                 'bg-gray-800/60 text-gray-500'
                                         )}
                                     `}>
@@ -81,15 +80,15 @@ export default function BookingPage() {
                                 </div>
                                 <div className='pt-4 w-full flex flex-col gap-1.5'>
                                     <div className='flex gap-2 text-base items-center text-gray-400'>
-                                        <Clock size={20} /><h1>Next Available: Now</h1>
+                                        <Clock size={20} /><h1>No. of Players: 4</h1>
                                     </div>
                                     <div className='flex gap-2 text-base items-center text-gray-400'>
-                                        <TvMinimal size={20} /><h1>4K Display</h1>
+                                        <TvMinimal size={20} /><h1>Next Session: 09:00 PM</h1>
                                     </div>
                                     <Button
                                         disabled={station.status !== 'open'}
                                         onClick={() => handleBooking(station)}
-                                        className={`mt-4 text-white font-bold rounded-full ${station.status !== 'open' && 'hidden'}`}
+                                        className={`mt-4 text-white font-bold rounded-lg ${station.status !== 'open' && 'hidden'}`}
                                     >
                                         Book Now
                                     </Button>

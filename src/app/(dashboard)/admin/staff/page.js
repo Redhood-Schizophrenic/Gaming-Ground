@@ -105,7 +105,7 @@ export default function StaffPage() {
                   {member.expand?.branch_id?.map(branch => branch.name).join(', ')}
                 </TableCell>
                 <TableCell>
-                  <Badge 
+                  <Badge
                     variant={member.status === 'active' ? 'default' : 'secondary'}
                   >
                     {member.status}
@@ -113,7 +113,7 @@ export default function StaffPage() {
                 </TableCell>
                 <TableCell>
                   <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
+                    <DropdownMenuTrigger asChild className='cursor-pointer'>
                       <Button variant="ghost" size="icon">
                         <MoreHorizontal className="h-4 w-4" />
                       </Button>
@@ -121,17 +121,19 @@ export default function StaffPage() {
                     <DropdownMenuContent align="end">
                       <DropdownMenuLabel>Actions</DropdownMenuLabel>
                       <DropdownMenuItem
+                        className='cursor-pointer'
                         onClick={() => handleRoleUpdate(member.id, 'Admin')}
                       >
                         Make Admin
                       </DropdownMenuItem>
                       <DropdownMenuItem
+                        className='cursor-pointer'
                         onClick={() => handleRoleUpdate(member.id, 'Staff')}
                       >
                         Make Staff
                       </DropdownMenuItem>
                       <DropdownMenuItem
-                        className="text-red-600"
+                        className="text-red-600 cursor-pointer"
                         onClick={() => handleRoleUpdate(member.id, 'inactive')}
                       >
                         Deactivate Account
