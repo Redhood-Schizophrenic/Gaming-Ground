@@ -18,12 +18,13 @@ export default function QuantityInput({ value = 0, onChange, required = false, p
   };
 
   return (
-    <div className='w-[170px]'>
+    <div className='w-[140px]'>
       <label htmlFor="Quantity" className="sr-only"> Quantity </label>
 
-      <div className="flex gap-2 items-center rounded-sm p-2">
+      <div className="flex gap-2 items-center rounded-lg overflow-hidden border">
         <Button
-          className='leading-none text-xl'
+          variant='outline'
+          className='leading-none text-xl rounded-l-lg'
           disabled={
             required ? value <= 1 : value <= 0
           }
@@ -36,11 +37,12 @@ export default function QuantityInput({ value = 0, onChange, required = false, p
           type='text'
           value={value}
           onChange={handleInputChange}
-          className='border-none text-center'
+          className='border-none text-center focus:outline-none'
         />
 
         <Button
-          className='leading-none text-xl'
+          variant='outline'
+          className='leading-none text-xl rounded-r-lg'
           onClick={handleIncrement}
         >
           +

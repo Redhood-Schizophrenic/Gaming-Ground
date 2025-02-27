@@ -1,6 +1,5 @@
 import colors from "@/constants/colors";
 import { FaPlaystation } from "react-icons/fa6";
-import { LiaVrCardboardSolid } from "react-icons/lia";
 import { GiSteeringWheel } from "react-icons/gi";
 import { BsHeadsetVr } from "react-icons/bs";
 
@@ -167,4 +166,68 @@ export const snacks = [
 		price: 15,
 		quantity: 0,
 	},
-]
+];
+
+export const device_pricings = [
+	{
+		device_type: 'Playstation',
+		single: 120,
+		duo: 70,
+		multi: 60
+	},
+];
+
+export const TimeList = [
+	{
+		value: 0.5,
+		displayValue: '30 Min',
+	},
+	{
+		value: 1,
+		displayValue: '1 Hour',
+	},
+	{
+		value: 2,
+		displayValue: '2 Hours',
+	},
+	{
+		value: 3,
+		displayValue: '3 Hours',
+	},
+	{
+		value: 4,
+		displayValue: '4 Hours',
+	},
+	{
+		value: 5,
+		displayValue: '5 Hours',
+	},
+	{
+		value: 6,
+		displayValue: '6 Hours',
+	},
+];
+
+export const CustomersData = [
+	{
+		id: 1,
+		customer_name: 'Shashank Sangawar',
+		customer_contact: '9090909090',
+	},
+	{
+		id: 2,
+		customer_name: 'Sahas Kamble',
+		customer_contact: '1234567890',
+	},
+	{
+		id: 3,
+		customer_name: 'Devanshu Umbare',
+		customer_contact: '1111111111',
+	},
+];
+
+export const rewardSystemPricing = {
+	creditRate: 6,
+	maxDebitRate: 50,
+	rateConversion: 0.10,
+}
