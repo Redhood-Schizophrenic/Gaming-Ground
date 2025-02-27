@@ -3,7 +3,20 @@ import { Button } from './button'
 import { Input } from './input'
 
 
-export default function QuantityInput({ value = 0, onChange, required = false }) {
+export default function QuantityInput({ value = 0, onChange, required = false, props = null }) {
+  const handleInputChange = (e) => {
+    const newValue = parseInt(e.target.value) || 0;
+    onChange(props || props === 0 ? { value: newValue, props } : newValue);
+  };
+
+  const handleDecrement = () => {
+    onChange(props || props === 0 ? { value: value - 1, props } : value - 1);
+  };
+
+  const handleIncrement = () => {
+    onChange(props || props === 0 ? { value: value + 1, props } : value + 1);
+  };
+
   return (
     <div className='w-[170px]'>
       <label htmlFor="Quantity" className="sr-only"> Quantity </label>
@@ -14,7 +27,7 @@ export default function QuantityInput({ value = 0, onChange, required = false })
           disabled={
             required ? value <= 1 : value <= 0
           }
-          onClick={() => onChange(value - 1)}
+          onClick={handleDecrement}
         >
           -
         </Button>
@@ -22,17 +35,17 @@ export default function QuantityInput({ value = 0, onChange, required = false })
         <Input
           type='text'
           value={value}
-          onChange={(e) => onChange(parseInt(e.target.value))}
+          onChange={handleInputChange}
           className='border-none text-center'
         />
 
         <Button
           className='leading-none text-xl'
-          onClick={() => onChange(value + 1)}
+          onClick={handleIncrement}
         >
           +
         </Button>
       </div>
     </div>
-  )
+  );
 }

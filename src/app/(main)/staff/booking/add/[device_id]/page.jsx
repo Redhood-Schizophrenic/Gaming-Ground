@@ -87,12 +87,18 @@ function NewSession({ params }) {
 		});
 	}
 
-	const handleSnackQuantity = (value) => {
-		setformDetails({
-			...formDetails,
-			snacks: []
-		})
-	}
+	const handleSnackQuantity = ({ value, props }) => {
+		// Assuming props contains the snack index
+		if (props !== null && typeof props === 'number') {
+			const updatedSnacks = [...formDetails.snacks];
+			updatedSnacks[props].quantity = value;
+
+			setformDetails({
+				...formDetails,
+				snacks: updatedSnacks
+			});
+		}
+	};
 
 	return (
 		<>
@@ -166,7 +172,12 @@ function NewSession({ params }) {
 						formDetails.snacks.map((snack, index) => (
 							<div key={index} className='flex w-full items-center justify-between'>
 								<h1 className='font-bold text-lg'>{snack.snack.name}</h1>
-								<QuantityInput />
+								<QuantityInput
+									value={snack.quantity}
+									onChange={handleSnackQuantity}
+									props={index}
+									required={true}
+								/>
 							</div>
 						))
 					}
