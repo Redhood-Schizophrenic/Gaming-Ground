@@ -14,9 +14,24 @@ import {
 import { StatsComponent } from "./components/StatsCard";
 import { ChartComponent } from "./components/Charts";
 import { Input } from "@/components/ui/input";
+import { getExpenses } from "@/lib/Cashlog";
 
 export default function ExpenseReports() {
 	const [dateValue, setDateValue] = useState("");
+	const [Expenses, setExpenses] = useState([]);
+
+
+	useEffect(() => {
+		async function fetchData() {
+			try {
+				const response = await getExpenses();
+				setExpenses(response);
+			} catch (error) {
+				console.log(error);
+			}
+		}
+		fetchData();
+	}, []);
 
 	// Weekly expense chart data
 	const weeklyData = [
@@ -130,16 +145,18 @@ export default function ExpenseReports() {
 					<TableHeader>
 						<TableRow>
 							<TableHead>Date</TableHead>
+							<TableHead>Author</TableHead>
 							<TableHead>Category</TableHead>
 							<TableHead>Description</TableHead>
 							<TableHead>Amount</TableHead>
 						</TableRow>
 					</TableHeader>
 					<TableBody>
-						{expenseDetails.map((expense, i) => (
+						{Expenses.map((expense, i) => (
 							<TableRow key={i}>
 								<TableCell>{expense.date}</TableCell>
-								<TableCell>{expense.category}</TableCell>
+								<TableCell>{expense.author}</TableCell>
+								<TableCell>{expense?.category}</TableCell>
 								<TableCell>{expense.description}</TableCell>
 								<TableCell>{expense.amount}</TableCell>
 							</TableRow>

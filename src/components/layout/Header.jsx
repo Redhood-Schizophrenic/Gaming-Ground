@@ -1,5 +1,5 @@
 'use client';
-
+import React from "react";
 import { Separator } from "../ui/separator";
 import { SidebarTrigger } from "../ui/sidebar";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
@@ -15,27 +15,26 @@ export default function Header() {
 				<SidebarTrigger className="-ml-1" />
 				<Separator orientation="vertical" className="mr-2 h-4" />
 			</div>
-
 			{/* Breadcrumbs */}
 			<Breadcrumb>
 				<BreadcrumbList>
 					<BreadcrumbItem>
 						<BreadcrumbLink href="/">Home</BreadcrumbLink>
 					</BreadcrumbItem>
-
 					{paths.map((segment, index) => {
 						const href = `/${paths.slice(0, index + 1).join("/")}`;
 						const isLast = index === paths.length - 1;
-
 						return (
-							<BreadcrumbItem key={href}>
+							<React.Fragment key={href}>
 								<BreadcrumbSeparator />
-								{isLast ? (
-									<span className="text-gray-500">{segment}</span>
-								) : (
-									<BreadcrumbLink href={href}>{segment}</BreadcrumbLink>
-								)}
-							</BreadcrumbItem>
+								<BreadcrumbItem>
+									{isLast ? (
+										<span className="text-gray-500">{segment}</span>
+									) : (
+										<BreadcrumbLink href={href}>{segment}</BreadcrumbLink>
+									)}
+								</BreadcrumbItem>
+							</React.Fragment>
 						);
 					})}
 				</BreadcrumbList>
@@ -43,4 +42,3 @@ export default function Header() {
 		</header>
 	);
 }
-
