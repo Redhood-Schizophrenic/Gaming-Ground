@@ -97,11 +97,11 @@ function RoleMenu({ role, items, pathname }) {
 
 function SidebarButton({ path, isActive, children }) {
 	return (
-		<Link href={path}>
-			<SidebarMenuButton className={isActive ? "bg-blue-500 text-white" : ""} href={path}>
+		<SidebarMenuButton className={isActive ? "bg-blue-500 text-white" : ""} href={path}>
+			<Link href={path}>
 				{children}
-			</SidebarMenuButton>
-		</Link>
+			</Link>
+		</SidebarMenuButton>
 	);
 }
 

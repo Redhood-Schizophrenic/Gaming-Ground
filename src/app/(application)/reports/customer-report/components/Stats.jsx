@@ -1,17 +1,16 @@
 import {
 	Card,
-	CardDescription,
 	CardHeader,
+	CardDescription,
 	CardTitle,
 } from "@/components/ui/card";
 
-
-export const StatsComponent = ({ Stats }) => {
+export const StatsCard = ({ Stats }) => {
 	return (
 		<>
 			{
 				Stats.map((stat, index) => (
-					<Card key={index} className='px-4 py-2'>
+					<Card key={index} className='px-2'>
 						<div className="flex items-center justify-between">
 							<CardHeader>
 								<CardDescription>{stat.title}</CardDescription>

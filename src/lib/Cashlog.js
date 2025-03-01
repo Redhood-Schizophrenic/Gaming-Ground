@@ -5,10 +5,36 @@ export const getExpenses = async () => {
     const response = await getRecords('cashlog');
     let data = [];
     if (response?.success) {
-      response?.data.map((item) => {
+      response?.data.forEach((item) => {
+        let formattedDate = "Date unavailable";
+
+        if (item.created) {
+          try {
+            // Replace space with 'T' to make it ISO 8601 compliant
+            const isoDateString = item.created.replace(' ', 'T');
+            const date = new Date(isoDateString);
+
+            if (!isNaN(date.getTime())) {
+              formattedDate = new Intl.DateTimeFormat("en-IN", {
+                day: "2-digit",
+                month: "2-digit",
+                year: "numeric",
+                hour: "2-digit",
+                minute: "2-digit",
+                hour12: true,
+              }).format(date);
+            } else {
+              formattedDate = String(item.created);
+            }
+          } catch (e) {
+            formattedDate = String(item.created);
+            console.log("Error formatting date:", e);
+          }
+        }
+
         const instance = {
           ...item,
-          date: item.created,
+          date: formattedDate,
           description: item?.withdraw_from_drawer?.description,
           author: item?.withdraw_from_drawer?.taken_by,
           amount: item?.withdraw_from_drawer?.amount
@@ -16,8 +42,9 @@ export const getExpenses = async () => {
         data.push(instance);
       });
     }
-    return data
+    return data;
   } catch (error) {
     console.log(error);
+    return [];
   }
 }
